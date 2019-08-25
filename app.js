@@ -6,19 +6,21 @@ const axios = require('axios');
 var FormData = require('form-data');
 
 
-var clientId = "8ebb26c0ce89bbdb"
-var clientSecret = "32579e7dbc464e0bb4b42f20f3b28564"
-var redirectUri = "http://domain2.com:3002/callback"
+var clientId = "2e8c131643ef460b"
+var clientSecret = "3f3687e7784e41b5a4f1618c8db642bb"
+var redirectUri = "https://demo2sso.herokuapp.com/callback"
 var responseType = "code"
 var state = ""
 var scope = "all"
 var grantType = "authorization_code"
-var tokenUrl = "http://dashboard.aino.id:8080/api/v1/oauth2/token"
-var userInfo = "http://dashboard.aino.id:8080/api/v1/userinfo"
+var tokenUrl = "https://racksso.herokuapp.com/api/v1/oauth2/token"
+var userInfo = "https://racksso.herokuapp.com/api/v1/userinfo"
 var responseToken
 
+const PORT = process.env.PORT || 3001
+
 function authorizeUrl(pState){
-  return "http://dashboard.aino.id:8080/oauth2/authorize?client_id="+clientId+"&redirect_uri="+redirectUri+"&response_type="+responseType+"&scope="+scope+"&state="+pState
+  return "https://racksso.herokuapp.com/oauth2/authorize?client_id="+clientId+"&redirect_uri="+redirectUri+"&response_type="+responseType+"&scope="+scope+"&state="+pState
 }
  
 app.set('view engine', 'pug')
@@ -102,5 +104,5 @@ app.get('/logout', function (req, res) {
   res.redirect(302, '/login')
 })
  
-console.log('start in port 3002')
-app.listen(3002)
+console.log('start in port '+PORT)
+app.listen(PORT)
